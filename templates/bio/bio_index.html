@@ -1,5 +1,43 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    My bio
+    42 Coffee Cups Test Assignment
+{% endblock %}
+
+{% block nav %}
+        <li><a href="#">Home</a></li>
+{% endblock %}
+
+{% block content %}
+    <h1>42 Coffee Cups Test Assignment</h1>
+
+    {% for bio in bio_list %}
+        <div class="panel panel-primary">
+            <div class="container">
+                   <h2>{{ bio }}</h2>
+                    <div class="pull-left col-md-5">
+                        <ul class="list-unstyled">
+                            <li>Name: <strong>{{ bio.first_name }}</strong></li>
+                            <li>Last name: <strong>{{ bio.last_name }}</strong></li>
+                            <li>Date of birth: <strong>{{ bio.birth_date }}</strong></li>
+                            <li>Bio: <strong>{{ bio.biography }}</strong></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-5">
+                        <ul  class="list-unstyled">
+                            <li>Email <strong>{{ bio.email }}</strong></li>
+                            <li>Jabber: <strong>{{ bio.jabber }}</strong></li>
+                            <li>Skype IM: <strong>{{ bio.skype }}</strong></li>
+                            <li>Other Contacts: <strong>{{ bio.other_contacts }}</strong></li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="alert alert-info" role="alert">
+            Bio data not aviable.
+        </div>
+    {% endfor %}
+
 {% endblock %}
