@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.test.client import Client
+from django.conf import settings
 from my_bio.models import MyBio, HttpRequestSave
+
 
 class BioTests(TestCase):
 
@@ -27,3 +29,10 @@ class RequestMiddlewareTests(TestCase):
          client.get('/')
          req_list = HttpRequestSave.objects.all()
          self.assertEquals(req_list.count(), 1)
+
+
+class ContextTest(TestCase):
+    def test_settings_processor(self):
+         client = Client()
+         response = client.get('/')
+         self.assertEqual(response.context['settings'], settings)
