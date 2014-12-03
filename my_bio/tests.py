@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.test.client import Client
-from my_bio.models import MyBio
+from my_bio.models import MyBio, HttpRequestSave
 
 class BioTests(TestCase):
 
@@ -18,3 +18,12 @@ class BioTests(TestCase):
          MyBio.objects.create(first_name='Oleksii', last_name='Aledinov')
          response = client.get('/')
          self.assertEquals(response.context['bio_list'].count(), 1)
+
+
+class RequestMiddlewareTests(TestCase):
+
+    def test_requests(self):
+         client = Client()
+         client.get('/')
+         req_list = HttpRequestSave.objects.all()
+         self.assertEquals(req_list.count(), 1)

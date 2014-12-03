@@ -13,3 +13,5 @@ class MyBio(models.Model):
 
     def __unicode__(self):
         return "Bio data for {0} {1}".format(self.first_name, self.last_name)
+
+
