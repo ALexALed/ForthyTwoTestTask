@@ -15,3 +15,10 @@ class MyBio(models.Model):
         return "Bio data for {0} {1}".format(self.first_name, self.last_name)
 
 
+class HttpRequestSave(models.Model):
+    http_request = models.CharField(max_length=300)
+    remote_addr = models.IPAddressField(blank=True)
+    datetime = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return "Request to {0} at {1}".format(self.remote_addr, self.datetime)
