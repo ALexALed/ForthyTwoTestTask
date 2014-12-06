@@ -8,7 +8,7 @@
 {% block content %}
 
     <h1>42 Coffee Cups Test Assignment</h1>
-    <form action="{% url 'edit' pk %}" method="post" enctype="multipart/form-data" class="form">
+    <form action="{% url 'edit' pk %}" method="post" enctype="multipart/form-data" class="form" id="editform">
         <div class="container">
 
             {{ form|bootstrap }}
@@ -18,9 +18,16 @@
             {% endif %}
         </div>
         <div class="container">
-            <input type="submit" value="Save">
+            <input id="sendbutton" type="submit" value="Save">
             <a href="{% url "home" %}">Cancel</a>
         </div>
+       <div id="errors" class="container alert alert-danger" role="alert">
+                {% for error in form.errors %}
+                    <p>{{ error }} not valid.</p>
+                {% endfor %}
+        </div>
+        <div class="container" id="sendwrapper"></div>
+        <div class="container" id="done"></div>
     </form>
 
 {% endblock %}
