@@ -3,3 +3,7 @@
 *.xml
 *.pyc
 *.sqlite3
+*.png
+*.jpg
+*,jpeg
+media

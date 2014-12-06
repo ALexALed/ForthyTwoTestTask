@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block title %}
+    42 Coffee Cups Test Assignment
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>42 Coffee Cups Test Assignment</h1>
+    <form action="{% url 'edit' pk %}" method="post" enctype="multipart/form-data" class="form">
+        <div class="container">
+
+            {{ form|bootstrap }}
+            {% csrf_token %}
+            {% if bio.photo %}
+                <img src="{{ bio.photo.url }}">
+            {% endif %}
+        </div>
+        <div class="container">
+            <input type="submit" value="Save">
+            <a href="{% url "home" %}">Cancel</a>
+        </div>
+    </form>
+
+{% endblock %}

@@ -40,7 +40,15 @@
             <li><a href="{% url "home" %}">Home</a></li>
             <li><a href="{% url "requests" %}">Requests</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+          <ul class="nav navbar-nav pull-right">
+              {% if login_status %}
+                <li class="text-info"><a href="">{{ user }}</a></li>
+              {% else %}
+                <li><a href="{% url "login" %}">Login</a></li>
+              {% endif %}
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </div>
       </div>
     </div>
 
