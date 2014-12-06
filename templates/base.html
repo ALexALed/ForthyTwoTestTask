@@ -1,4 +1,5 @@
 {% load static %}
+{% load edit_link %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -43,8 +44,8 @@
           </ul>
           <ul class="nav navbar-nav pull-right">
               {% if login_status %}
-                <li class="text-info"><a href="">{{ user }}</a></li>
-              {% else %}
+                <li class="text-info"><a href="{% edit_link user%}">{{ user }} (press for edit)</a></li>
+                {% else %}
                 <li><a href="{% url "login" %}">Login</a></li>
               {% endif %}
               <li><a href="{% url 'logout' %}">Logout</a></li>

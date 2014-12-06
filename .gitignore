@@ -5,5 +5,5 @@
 *.sqlite3
 *.png
 *.jpg
-*,jpeg
+*.jpeg
 media
