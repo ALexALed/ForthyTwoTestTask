@@ -15,7 +15,6 @@ class MyBio(models.Model):
     other_contacts = models.TextField(u"Other contacts", blank=True, null=True)
     photo = models.ImageField(blank=True, null=True)
 
-
     def save(self, *args, **kwargs):
         if self.photo and self.photo.width != 200 and self.photo.height != 200:
             super(MyBio, self).save(*args, **kwargs)
@@ -33,6 +32,7 @@ class HttpRequestSave(models.Model):
     http_request = models.CharField(max_length=300)
     remote_addr = models.IPAddressField(blank=True)
     datetime = models.DateTimeField(auto_now_add=True)
+    priority = models.IntegerField(default=1)
 
     def __unicode__(self):
         return "Request to {0} at {1}".format(self.remote_addr, self.datetime)
@@ -67,7 +67,6 @@ def save_signal(sender, signal):
             obj.save()
         except OperationalError:
             pass
-
 
 post_init.connect(signals_init, dispatch_uid='ForthyTwoTestTask.my_bio')
 post_save.connect(signals_save, dispatch_uid='ForthyTwoTestTask.my_bio')
