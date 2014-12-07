@@ -8,4 +8,19 @@
     "birth_date": "1986-03-11",
     "biography": "I am 28 years old. I live in the city of Sumy. I work as a programmer. I graduated from the Sumy State ASMakarenko Pedagogical university of the 2008"},
   "model": "my_bio.mybio",
-  "pk": 1}]
+  "pk": 1},
+  {"fields":
+  {"username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "is_superuser": true,
+    "is_staff": true,
+    "last_login": "2014-12-06T20:17:49.911Z",
+    "groups": [],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$12000$JGyobzitmoUs$YQsVLHMvFgQbXKk5fAnu+J+w+TQBdZZgKhkWJVHkNZc=",
+    "email": "",
+    "date_joined": "2014-12-06T20:15:48.097Z"},
+    "model": "auth.user",
+    "pk": 1}]
