@@ -16,13 +16,14 @@ class MyBio(models.Model):
     photo = models.ImageField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        if self.photo and self.photo.width != 200 and self.photo.height != 200:
+        if self.photo and \
+                        self.photo.width != 200 and self.photo.height != 200:
             super(MyBio, self).save(*args, **kwargs)
-            resized = get_thumbnail(self.photo, "200x200", crop='center', quality=99)
-            self.photo.save(resized.name, ContentFile(resized.read()), save=True)
+            resized = get_thumbnail(self.photo, "200x200",
+                                    crop='center', quality=99)
+            self.photo.save(resized.name,
+                            ContentFile(resized.read()), save=True)
         super(MyBio, self).save(*args, **kwargs)
-
-
 
     def __unicode__(self):
         return "Bio data for {0} {1}".format(self.first_name, self.last_name)
@@ -46,6 +47,7 @@ class DataBaseEvents(models.Model):
     def __unicode__(self):
         return "{0}-{1}-{2}".format(self.signal, self.model, self.date)
 
+
 def signals_init(sender, **kwargs):
     save_signal(sender, 'init')
 
@@ -67,6 +69,7 @@ def save_signal(sender, signal):
             obj.save()
         except OperationalError:
             pass
+
 
 post_init.connect(signals_init, dispatch_uid='ForthyTwoTestTask.my_bio')
 post_save.connect(signals_save, dispatch_uid='ForthyTwoTestTask.my_bio')

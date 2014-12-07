@@ -9,7 +9,7 @@ class CalendarWidget(TextInput):
     class Media:
         js = ('/static/js/jquery-1.11.1.min.js',
               '/static/js/jquery-ui.min.js')
-        css = {'all' : '/static/css/jquery-ui.min.css'}
+        css = {'all': '/static/css/jquery-ui.min.css'}
 
 
 class MyBioForm(ModelForm):

@@ -1,6 +1,7 @@
 import time
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response, redirect, get_object_or_404, HttpResponse
+from django.shortcuts import render_to_response, redirect, \
+    get_object_or_404, HttpResponse
 from django.template import RequestContext
 from django.contrib.auth import logout
 from django.http import Http404
@@ -14,9 +15,10 @@ def bio_home(request):
     login_status = request.user.is_authenticated()
     user = request.user
     bio_list = MyBio.objects.all()
-    return render_to_response('bio/bio_index.html', {'bio_list': bio_list,
-                                                     'user': user,
-                                                     'login_status': login_status},
+    return render_to_response('bio/bio_index.html',
+                              {'bio_list': bio_list,
+                               'user': user,
+                               'login_status': login_status},
                               context_instance=RequestContext(request))
 
 
@@ -56,7 +58,8 @@ def edit_bio_data(request, bio_pk=None):
                     error_list.append(err)
 
                 json_result = simplejson.dumps({'status': 'fail_status',
-                                                'errors': ",".join(error_list)})
+                                                'errors':
+                                                    ",".join(error_list)})
         if request.is_ajax():
             return HttpResponse(json_result)
     else:

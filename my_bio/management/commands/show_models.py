@@ -5,6 +5,7 @@ from django.apps import apps
 from django.core.management.base import BaseCommand
 import sys
 
+
 class Command(BaseCommand):
 
     help = 'This command print all models and count their elements'
@@ -17,6 +18,6 @@ class Command(BaseCommand):
                                         model._default_manager.count()))
         result_list = '\n'.join(result_list)
         sys.stdout.write(result_list)
-        sys.stderr.write("\nerror: "+ result_list)
+        sys.stderr.write("\nerror: " + result_list)
 
         return result_list
