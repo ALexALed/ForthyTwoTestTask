@@ -1,16 +1,18 @@
 MANAGE=django-admin.py
+SETTINGS=ForthyTwoTestTask.settings
 
 test:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=ForthyTwoTestTask.settings $(MANAGE) test accounts rlogger
+	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) test
 
 run:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=ForthyTwoTestTask.settings $(MANAGE) runserver
+	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) runserver
 
 syncdb:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=ForthyTwoTestTask.settings $(MANAGE) syncdb --noinput
+	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) syncdb --noinput
 
-syncall:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=ForthyTwoTestTask.settings $(MANAGE) syncdb --migrate --noinput
+migrate:
+	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) migrate
 
-clean:
-	find -type f -name "*.pyc" -delete
+collectstatic:
+	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) collectstatic --noinput
+.PHONY: test syncdb migrate
